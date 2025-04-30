@@ -44,4 +44,4 @@ next-env.d.ts
 .env
 
 #generated prisma 
-generated /
+src/app/generated
