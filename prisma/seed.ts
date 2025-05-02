@@ -88,6 +88,23 @@ In the name of the Father, and of the Son, and of the Holy Spirit. Amen.
     title: "Fatima Prayer",
     content: `O My Jesus, forgive us our sins, save us from the fires of Hell, lead all souls to Heaven, especially those in most need of Thy mercy.`,
   },
+  {
+    title: "Hail, Holy Queen",
+    content: `
+Hail, Holy Queen, Mother of Mercy,
+our life, our sweetness and our hope.
+To thee do we cry, 
+poor banished children of Eve.
+To thee do we send up our sighs,
+mourning and weeping in this valley of tears.
+Turn then, most gracious advocate,
+thine eyes of mercy toward us,
+and after this our exile
+show unto us the blessed fruit of thy womb, Jesus.
+O clement, O loving,
+O sweet Virgin Mary.
+`,
+  },
 ];
 
 /**
@@ -442,40 +459,16 @@ In like manner the chalice also, after he had supped, saying: This is the chalic
  * rosaries -> back reference
  */
 const mysterySetsData = [
-  {
-    name: "Joyful Mysteries",
-    day: "Monday",
-  },
-  {
-    name: "Sorrowful Mysteries",
-    day: "Tuesday",
-  },
-  {
-    name: "Glorious Mysteries",
-    day: "Wednesday",
-  },
-  {
-    name: "Luminous Mysteries",
-    day: "Thursday",
-  },
-  {
-    name: "Sorrowful Mysteries",
-    day: "Friday",
-  },
-  {
-    name: "Joyful Mysteries",
-    day: "Saturday",
-  },
-  {
-    name: "Glorious Mysteries",
-    day: "Sunday",
-  },
+  { name: "Joyful Mysteries", days: ["Monday", "Saturday"] },
+  { name: "Sorrowful Mysteries", days: ["Tuesday", "Friday"] },
+  { name: "Glorious Mysteries", days: ["Wednesday", "Sunday"] },
+  { name: "Luminous Mysteries", days: ["Thursday"] },
 ];
 
 /**
  * Seed main function
  * Seed prayers, mysteries, and mysterySets statically
- * seed mysterySetITem dynamically from the mysteries first and then with the prayers
+ * Seed mysterySetITem dynamically from the mysteries first and then with the prayers
  */
 export async function main() {
   await prisma.prayer.createMany({ data: prayersData });
@@ -510,6 +503,16 @@ export async function main() {
   //seed the mysterySetItem with prayers using the prayers dynamically
   // Fetch all prayers once, in order
   const allPrayers = await prisma.prayer.findMany({ orderBy: { id: "asc" } });
+  //rosary days (week days)
+  const allDays = [
+    "Monday",
+    "Tuesday",
+    "Wednesday",
+    "Thursday",
+    "Friday",
+    "Saturday",
+    "Sunday",
+  ];
 
   // Fetch all MysterySetItems (initiated above, ready for prayers)
   const mysterySetItems = await prisma.mysterySetItem.findMany({
@@ -550,14 +553,18 @@ export async function main() {
    * Creating default Rosaries
    */
   //rosaries prayers titles
-  const openingTitles = ["Sign of the Cross", "Apostles' Creed", "Our Father"];
-  const closingTitles = ["Hail Holy Queen", "Sign of the Cross"];
+  const openingTitles = [
+    "The Sign of the Cross",
+    "Apostles' Creed",
+    "Our Father",
+  ];
+  const closingTitles = ["Hail, Holy Queen", "The Sign of the Cross"];
 
   //creating the default rosaries for the days of he week using mysterySets
-  for (const { day } of mysterySetsData) {
+  for (const day of allDays) {
     //find the mystery set of the day
     const daySet = await prisma.mysterySet.findFirst({
-      where: { day },
+      where: { days: { has: day } },
     });
     if (!daySet) throw new Error(`Not sets are available for ${day}!`);
 
@@ -590,7 +597,7 @@ export async function main() {
         const prayer = prayersMap.get(t);
 
         if (!prayer)
-          throw new Error("No prayer has been found with this title!");
+          throw new Error(`No prayer has been found with this title: ${t}!`);
 
         return {
           rosaryId: dayRosary.id,

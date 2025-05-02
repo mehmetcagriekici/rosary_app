@@ -30,7 +30,7 @@ model Mystery {
 model MysterySet {
   id           Int               @id @default(autoincrement())
   name         String             // e.g., "Joyful Mysteries"
-  day          String             // e.g., "Monday"
+  days          String[]             // e.g., "Monday"
   mysteries    MysterySetItem[]   // 5 linked Mysteries
   rosaries     Rosary[]           // back reference
 }
@@ -55,7 +55,6 @@ model MysterySetItemPrayer {
   mysterySetItemId Int
   mysterySetItem   MysterySetItem  @relation(fields: [mysterySetItemId], references: [id])
 }
-
 
 // 6. Rosary Model
 model Rosary {
