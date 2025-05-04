@@ -1,11 +1,10 @@
+//imports
 import Link from "next/link";
 
 export default function HomePage() {
   return (
     <main className="min-h-screen bg-bgMain text-textMain flex items-center justify-center px-6 py-16">
       <div className="w-full max-w-xl text-center space-y-10">
-        {/* Symbolic cross ornament */}
-
         {/* Title */}
         <h1 className="text-4xl font-eagleLake tracking-wide text-textMain">
           Pray the Holy Rosary
@@ -19,23 +18,24 @@ export default function HomePage() {
 
         {/* Actions */}
         <div className="space-y-4">
+          {/*Primary*/}
           <Link
             href="/rosary/start"
-            className="block w-full bg-bgSub text-textSoft font-medium font-work py-3 px-6 rounded-2xl shadow hover:bg-bgMain hover:text-accentStone transition-all"
+            className="block w-full bg-bgAlt text-textSoft font-medium font-work py-3 px-6 rounded-2xl border-2 border-borderSoft shadow hover:border-borderDeep hover:bg-bgOverlay hover:text-textMain"
           >
             Start Today&apos;s Rosary
           </Link>
-
+          {/*Secondary*/}
           <Link
             href="/mystery-set"
-            className="block w-full bg-bgSub text-textSoft font-medium font-work py-3 px-6 rounded-2xl shadow hover:bg-bgMain hover:text-accentStone transition-all"
+            className="block w-full bg-bgSub text-textSoft font-medium font-work py-3 px-6 rounded-2xl shadow hover:bg-bgMain hover:text-textFaint"
           >
             Browse Mystery Sets
           </Link>
-
+          {/*Secondary*/}
           <Link
             href="/prayer"
-            className="block w-full bg-bgSub text-textSoft font-medium font-work py-3 px-6 rounded-2xl shadow hover:bg-bgMain hover:text-accentStone transition-all"
+            className="block w-full bg-bgSub text-textSoft font-medium font-work py-3 px-6 rounded-2xl shadow hover:bg-bgMain hover:text-textFaint"
           >
             Browse All Prayers
           </Link>

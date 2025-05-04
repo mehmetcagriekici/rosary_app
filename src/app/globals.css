@@ -1,8 +1,8 @@
-/*font families*/
 @import url("https://fonts.googleapis.com/css2?family=Eagle+Lake&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Macondo&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Marcellus+SC&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Work+Sans:ital,wght@0,100..900;1,100..900&display=swap");
+
 @import "tailwindcss";
 
 @theme {
@@ -12,10 +12,32 @@
   --font-marcellus: "Marcellus SC", serif;
   --font-work: "Work Sans", sans-serif;
   /*theme*/
-  --color-bgMain: #eae6df;
-  --color-bgSub: #d8d3ca;
-  --color-accentGold: #c8a962;
-  --color-accentStone: #64625d;
-  --color-textMain: #2f2d2a;
-  --color-textSoft: #4d4a46;
+
+  /* backgrounds */
+  --color-bgMain: #eae6df; /* Parchment */
+  --color-bgSub: #d8d3ca; /* Aged paper */
+  --color-bgAlt: #f4f1ea; /* Chapel wall */
+  --color-bgOverlay: #fefdf8; /* Candle haze */
+  --color-bgPanel: #f0ece4; /* UI card / light stone slab */
+
+  /* text */
+  --color-textMain: #2f2d2a; /* Deep ink */
+  --color-textSoft: #4d4a46; /* Faded brown ink */
+  --color-textFaint: #776f64; /* Dusty ash */
+  --color-textGlow: #b6a98d; /* Candle highlight */
+
+  /* accents */
+  --color-accentGold: #c8a962; /* Worn gilding */
+  --color-accentStone: #6a665e; /* Rosary bead gray */
+  --color-accentBrass: #b79e73; /* Brass rosary crucifix */
+
+  /* borders */
+  --color-borderSoft: #d7d3c8; /* Stone outline */
+  --color-borderDeep: #bfb9ae; /* Subtle framing */
+
+  /* alerts / emotion */
+  --color-redMuted: #a26c6c; /* Sorrowful crimson */
+  --color-greenMuted: #718f77; /* Olive hope */
+  --color-indigoAsh: #53596a; /* Dignified solemnity */
+  --color-blueFaded: #8595a1; /* Peaceful devotion */
 }
