@@ -12,7 +12,7 @@ export function PrayerCard({
   return (
     <Link
       href={href}
-      className="block rounded-lg px-5 py-4 shadow hover:bg-accentGold/20"
+      className="w-full block rounded-lg px-5 py-4 shadow hover:bg-accentGold/20"
     >
       <h2 className="font-macondo text-lg text-textMain leading-snug">
         {title}

@@ -24,7 +24,7 @@ export default async function PrayerPage({ params }: PrayerPageProps) {
   const next = allPrayers[currentIndex + 1];
 
   return (
-    <main className="min-h-screen bg-bgMain text-textMain px-6 py-16">
+    <main className="min-h-screen text-textMain px-6 py-16">
       <div className="max-w-2xl mx-auto space-y-8">
         <h1 className="text-3xl font-eagleLake tracking-wide text-center">
           {currentPrayer.title}

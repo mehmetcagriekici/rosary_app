@@ -6,8 +6,10 @@ import { PrayerCard } from "@/components/PrayerCard";
 import { Prayer } from "@/utils/types";
 
 export function PrayerSearchList({ prayers }: { prayers: Prayer[] }) {
+  //search query
   const [query, setQuery] = useState("");
 
+  //search filter
   const filtered = query.trim()
     ? prayers.filter(
         (p) =>
@@ -17,33 +19,32 @@ export function PrayerSearchList({ prayers }: { prayers: Prayer[] }) {
     : prayers;
 
   return (
-    <div className="space-y-8">
+    <div className="w-full flex flex-col justify-center items-center gap-10">
       {/* Search Input */}
       <input
         type="text"
         value={query}
         onChange={(e) => setQuery(e.target.value)}
         placeholder="Search prayers..."
-        className="w-full px-4 py-2 text-sm font-marcellus bg-bgAlt text-textMain placeholder-textFaint border border-[color:var(--color-borderSoft)] rounded-md shadow-inner focus:outline-none focus:ring-0"
+        className="w-full p-1 text-md font-marcellus bg-bgAlt text-textMain placeholder-textFaint border border-borderSoft rounded-md focus:outline-none lg:w-3/5"
       />
-
       {/*Displayed prayers*/}
-      {filtered.length > 0 ? (
-        <div className="space-y-5">
-          {filtered.map((prayer) => (
+      <div className="w-full flex flex-col justify-center items-center gap-10 lg:w-3/5">
+        {filtered.length > 0 ? (
+          filtered.map((prayer) => (
             <PrayerCard
               key={prayer.id}
               title={prayer.title}
               content={prayer.content}
               href={`/prayer/${prayer.id}`}
             />
-          ))}
-        </div>
-      ) : (
-        <p className="text-sm font-marcellus text-textSoft opacity-70 text-center">
-          No prayers found.
-        </p>
-      )}
+          ))
+        ) : (
+          <p className="text-sm font-marcellus text-textSoft opacity-70 text-center">
+            No prayers found.
+          </p>
+        )}
+      </div>
     </div>
   );
 }
